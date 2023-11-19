@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Benefícios em JavaScript</title>
+</head>
+
+<body>
+    <script>
+
+
+
+
+        /* A função mostrarMenu() é definida para exibir o menu e solicitar
+         a escolha do usuário. A função retorna a escolha do usuário.*/
+
+        function mostrarMenu() {
+            alert(` Menu de opções:
+
+                    1. Novo salário
+                    2. Férias
+                    3. Décimo terceiro
+                    4. Sair`);
+
+            // varial local - recebe o valor da opção desejada
+            let escolha_opcao = Number(prompt('Escolha opção desejada: '));
+
+            return escolha_opcao;
+        }
+
+        // Inicializa a variável "sair" com "n". O loop while será executado inicialmente
+        // se a opção do usuário for NÃO sair do programa.
+
+        let sair = 'n'
+
+
+        // a variavel recebe o valor do prompt() que esstá na função
+        let escolha_opcao = mostrarMenu()
+
+        // verifica se o usuario deseja continuar
+        while (sair === 'n' || sair === 'não') {
+
+
+
+
+
+            // enquanto o valor não for um numéro válido e diferente das opções
+            while (isNaN(escolha_opcao) || escolha_opcao < 1 || escolha_opcao > 4) {
+                alert('Por favor, selecione uma das opções!');
+
+                // chama a função e armazena a opção escolhida na variável
+                escolha_opcao = mostrarMenu()
+            }
+
+
+            // será executada se a opção escolhida foi [1 - Novo Sálario]
+            if (escolha_opcao == 1) {
+
+                //declarando e recebendo o valor do [SALÁRIO]
+                let salario = Number(prompt('Digite seu salário atual para saber o seu novo salário: '))
+
+                // Verifica se o valor inserido é inválido
+                if (isNaN(salario)) {
+                    alert('O valor inserido não é um numéro!') // 
+
+                } else {
+
+                    // Verificando o valor do [SALÁRIO BASE] para saber seu [NOVO SALÁRIO]
+                    if (salario <= 1200) {
+
+                        // calculando a porcentagem
+                        let novo_salario = salario + (salario * 15 / 100)
+
+                        // Formata o novo salário para o formato de moeda brasileiro [R$]
+                        let novo_salario_Formatado = novo_salario.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
+                        alert(`O seu novo salário com aumento de 15% é de ${novo_salario_Formatado}`)
+
+
+                    } else if (salario <= 2400) {
+
+                        // calculando a porcentagem
+                        let novo_salario = salario + (salario * 10 / 100)
+
+                        // Formata o novo salário para o formato de moeda brasileiro [R$]
+
+                        let novo_salario_Formatado = novo_salario.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
+                        alert(`O seu novo salário com aumento de 10% é de ${novo_salario_Formatado}`)
+
+
+                    } else if (salario > 2400) {
+
+                        // calculando a porcentagem
+                        let novo_salario = salario + (salario * 5 / 100)
+
+                        // Formata o novo salário para o formato de moeda brasileiro [R$]
+                        let novo_salario_Formatado = novo_salario.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
+                        alert(`O seu novo salário com aumento de 5% é de ${novo_salario_Formatado}`)
+
+                    }
+                }
+
+
+
+                // será executada se a opção escolhida foi [2 - Férias]
+            } else if (escolha_opcao == 2) {
+
+                //declarando e recebendo o valor do [SALÁRIO]
+                let salario = Number(prompt('Digite seu salário para calcular o valor das férias: '))
+
+                // Verifica se o valor inserido é inválido
+                if (isNaN(salario)) {
+                    alert('Por favor, digite um valor numérico válido.')
+
+                } else {
+
+                    let salario_Ferias = salario + (salario / 3)
+                    let salario_Ferias_Formatado = salario_Ferias.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
+                    alert(`O valor do seu salário nas férias é ${salario_Ferias_Formatado}`)
+                }
+
+
+
+                // será executada se a opção escolhida foi [3 - Décimo terceiro]
+            } else if (escolha_opcao == 3) {
+
+                //pegando o ano atual
+                let data = new Date();
+                let dataAno = data.getFullYear()
+
+                let salario = Number(prompt('Digite seu salário para calcular o décimo terceiro: '))
+                let total_meses = Number(prompt(`Digite o numéro de meses trabalhados no ano de ${dataAno}: `))
+
+                // Verifica se os dois valores inserido é inválido
+                if (isNaN(salario) || isNaN(total_meses)) {
+                    alert('Insira as informações corretamente!')
+
+                    // verifica se está entre 0 e 12 -> meses trabalhados
+                } else if (total_meses >= 0 && total_meses <= 12) {
+
+                    let decimoTerceiro = salario * total_meses / 12
+                    let decimoTerceiro_Formatado = decimoTerceiro.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
+                    alert(`O valor do seu décimo terceiro será no valor de ${decimoTerceiro_Formatado}`)
+
+                } else {
+                    alert('Insira as informações corretamente')
+                }
+            }
+
+
+            else {  // será executada se a opção escolhida foi [4- Sair]
+
+                sair = prompt('Realmente deseja SAIR? [s/n]: '); //sim 
+
+                // se a reposta for que ele deseja SAIR do programa
+                if (sair === 's' || sair === 'sim') {
+                    alert('Programa Encerrado!')
+                    break; // permite o programa encerrar a execução
+                }
+
+
+            }
+
+            // vai chamar a função MENU sempre depois que usário tiver escolhido uma opção
+            escolha_opcao = mostrarMenu();
+
+            
+        }
+
+
+    </script>
+
+</body>
+
+</html>
