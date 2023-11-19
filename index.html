@@ -43,7 +43,7 @@
         while (sair === 'n' || sair === 'não') {
 
 
-
+            
 
 
             // enquanto o valor não for um numéro válido e diferente das opções
@@ -131,7 +131,7 @@
 
                 //pegando o ano atual
                 let data = new Date();
-                let dataAno = data.getFullYear()
+                let dataAno = data.getFullYear() //2023
 
                 let salario = Number(prompt('Digite seu salário para calcular o décimo terceiro: '))
                 let total_meses = Number(prompt(`Digite o numéro de meses trabalhados no ano de ${dataAno}: `))
@@ -149,7 +149,7 @@
                     alert(`O valor do seu décimo terceiro será no valor de ${decimoTerceiro_Formatado}`)
 
                 } else {
-                    alert('Insira as informações corretamente')
+                    alert('Insira as informações corretamente.')
                 }
             }
 
@@ -170,7 +170,7 @@
             // vai chamar a função MENU sempre depois que usário tiver escolhido uma opção
             escolha_opcao = mostrarMenu();
 
-            
+
         }
 
 
